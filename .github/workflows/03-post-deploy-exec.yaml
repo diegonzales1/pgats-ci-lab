@@ -9,7 +9,7 @@ name: 'Execução por Deploy'
 on: 
   workflow_run:
     workflows: ['Execução Manual'] # Nome das pipes que eu vou aguardar 
-    types: 
+    types: # tipos de estados que vão disparar (requested, completed ou in_progress)
       - completed
 
 # trabalho/tarefas dentro do pipeline = jobs 
@@ -19,6 +19,12 @@ jobs:
     # maquina que job vai executar 
     # maquinas disponiveis https://github.com\actions\runner-images
     runs-on: ubuntu-latest
+
+    # condicional - if 
+    # ${{ expressao }}
+
+    # valida que a outra pipe deu sucesso no deploy, se der sucesso, roda essa pipe
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # passos do script de build 
     steps: 
