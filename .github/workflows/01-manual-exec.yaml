@@ -4,26 +4,25 @@
 name: 'Execução Manual'
 
 # regras de disparo (gatilhos/triggers)
-# gatilho de execução manual = workflow_dispatch 
+# gatilho de execução manual = workflow_dispatch
 
-on: 
+on:
   workflow_dispatch:
 
-# trabalho/tarefas dentro do pipeline = jobs 
-jobs: 
+# trabalho/tarefas dentro do pipeline = jobs
+jobs:
   e2e-tests:
-
-    # maquina que job vai executar 
+    # maquina que job vai executar
     # maquinas disponiveis https://github.com\actions\runner-images
     runs-on: ubuntu-latest
 
-    # passos do script de build 
-    steps: 
+    # passos do script de build
+    steps:
       # clone do projeto
       - name: Clonando o projeto
         uses: actions/checkout@v4
 
-      # instalação do node 
+      # instalação do node
       - name: Instalando Node
         uses: actions/setup-node@v4
         with:
@@ -31,16 +30,16 @@ jobs:
 
       # instalação do Yarn
       - name: Instalando Yarn
-        run: npm install -g yarn 
+        run: npm install -g yarn
 
-      # instalação das dependências 
+      # instalação das dependências
       - name: Instalando dependências
-        run: yarn 
+        run: yarn
 
       # instalação do playwright
       - name: Instalando playwright
-        run: yarn playwright install 
+        run: yarn playwright install
 
-      # executar os testes e2e 
+      # executar os testes e2e
       - name: Executando os testes E2E
         run: yarn run e2e
