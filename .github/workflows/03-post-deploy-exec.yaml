@@ -1,14 +1,14 @@
 # CI de Nível 03 - Disparo após a conclusão de um pipeline
 
 # nome do nosso 'pipeline'
-name: 'Execução por Deploy'
+name: '03-execução-por-deploy'
 
 # regras de disparo (gatilhos/triggers)
 # gatilho de execução a partir de outra pipe = workflow_run
 
 on:
   workflow_run:
-    workflows: ['Execução Manual'] # Nome das pipes que eu vou aguardar
+    workflows: ['01-execução-manual'] # Nome das pipes que eu vou aguardar
     types: # tipos de estados que vão disparar (requested, completed ou in_progress)
       - completed
 
