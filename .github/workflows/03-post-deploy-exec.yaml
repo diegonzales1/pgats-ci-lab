@@ -53,3 +53,12 @@ jobs:
       # executar os testes e2e 
       - name: Executando os testes E2E
         run: yarn run e2e
+
+      # transformar relatorio em zip para donwload
+      - name: 'Gerando relatório para donwload'
+        uses: actions/upload-artifact@v4
+        ## !cancelled ou always
+        if: ${{ !cancelled() }} # Só não gera o relatorio se for cancelado a pipe, senão ele gera mesmo dando erro em algum momento
+        with:
+          name: relatorio
+          path: ./playwright-report
